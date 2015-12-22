@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag    'applies', media: 'all', 'data-turbolinks-track' => true %>
+
+<div>
+	<h2 align="center">
+	<%= link_to "<", date: @date.prev_month %>
+  	<%= @date.strftime("%B %Y") %> 
+	<%= link_to ">", date: @date.next_month %>
+	</h2>
+<%= calendar @date do |date| %>
+  <%= date.day %>
+      <ul>
+          <% @applies.each do |a| %>
+          <% if a.status == "Approved" %>
+
+          <% if a.start_date.strftime("%Y-%m-%d")== date.strftime("%Y-%m-%d")%>
+            
+          <li><%= link_to (Employee.where('id=?',a.employee_id).first).name, a %></li>
+
+          <% end %>
+          <% end %>
+          <% end %>
+      </ul>
+<% end %>
+</div>
+
+
+
+
+

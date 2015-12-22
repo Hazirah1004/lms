@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Applies</h1>
+
+<table class="table table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Employee ID</th>
+      <th>Employee Name</th>
+      <th>Leave type</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Replace person</th>
+      <th>Address on leave</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @applies.each do |apply| %>
+      <tr>
+        <th><%= apply.employee_id %></td>
+        <th><%= Employee.find(apply.employee_id).name %></td>
+        <td><%= apply.leave_type %></td>
+        <td><%= apply.start_date %></td>
+        <td><%= apply.end_date %></td>
+        <td><%= apply.replace_person %></td>
+        <td><%= apply.address_on_leave %></td>
+        <td><%= apply.status %></td>
+        <td><%= link_to 'Show', apply, class: "btn btn-default" %></td>
+        <td><%= link_to 'Edit', edit_apply_path(apply), class: "btn btn-default" %></td>
+        <td><% if apply.status== "Pending" %>
+          <%= link_to 'Destroy', apply, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %><%end%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Apply', new_apply_path, class: "btn btn-default" %>

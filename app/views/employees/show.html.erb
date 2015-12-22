@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-striped table-hover table-bordered">
+  
+    <tr>
+      <th> <strong>Name:</strong></th>
+      <th><%= @employee.name %></th>
+    </tr>
+    
+    <tr>
+      <th><strong>Ic:</strong></th>
+      <th><%= @employee.ic %></th>
+    </tr>
+
+    <tr>
+      <th><strong>Gender</strong></th>
+      <th><%= @employee.gender %></th>
+    </tr>
+
+    <tr>
+      <th><strong>Address:</strong></th>
+      <th><%= @employee.address %></th>
+    </tr>
+
+    <tr>
+      <th><strong>Phone:</strong></th>
+      <th><%= @employee.phone %></th>
+    </tr>
+
+    <tr>
+      <th><strong>Position:</strong></th>
+      <th><%= @employee.position %></th>
+    </tr>
+
+    <tr>
+      <th><strong>Email:</strong></th>
+      <th><%= @employee.email %></th>
+    </tr>
+
+    <tr>
+      <th><strong>Dept:</strong></th>
+      <th><%= @employee.dept %></th>
+    </tr>
+
+    <tr>
+      <th><strong>Startdate:</strong></th>
+      <th><%= @employee.startdate %></th>
+    </tr>
+
+    <tr>
+      <th><strong>Leave Balance:</strong></th>
+      <th><%= @employee.annualleave %></th>
+    </tr>
+      <th colspan="3"></th>
+    
+</table>
+
+
+<%= link_to 'Edit', edit_employee_path(@employee), class: "btn btn-default" %> |
+<%= link_to 'Back', employees_path, class: "btn btn-default" %>

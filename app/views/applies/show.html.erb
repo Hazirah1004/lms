@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Leave type:</strong>
+  <%= @apply.leave_type %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @apply.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @apply.end_date %>
+</p>
+
+<p>
+  <strong>Replace person:</strong>
+  <%= @apply.replace_person %>
+</p>
+
+<p>
+  <strong>Address on leave:</strong>
+  <%= @apply.address_on_leave %>
+</p>
+<p>
+<strong>Leave Status:</strong>
+<%= @apply.status %>
+
+</p>
+
+<%= link_to 'Edit', edit_apply_path(@apply), class: "btn btn-default" %> |
+<%= link_to 'Back', applies_path, class: "btn btn-default" %>

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Applies</h1>
+
+<table class="table table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Employee ID</th>
+      <th>Leave type</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Replace person</th>
+      <th>Address on leave</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @applies.each do |apply| %>
+      <tr>
+        <% if apply.employee_id != @current_user.id %>
+        <th><%= apply.employee_id %></td>
+        <td><%= apply.leave_type %></td>
+        <td><%= apply.start_date %></td>
+        <td><%= apply.end_date %></td>
+        <td><%= apply.replace_person %></td>
+        <td><%= apply.address_on_leave %></td>
+        <td><%= link_to 'Approve', status_approve_applies_path(:a => apply.id ), class: "btn btn-success"  %><%= link_to 'Reject', status_reject_applies_path(:a => apply.id ), class: "btn btn-danger"  %> </td>
+        <td><%= link_to 'Show', apply, class: "btn btn-default"  %></td>
+        <td><%#= link_to 'Edit', edit_apply_path(apply),  class: "btn btn-info"   %></td>
+        <td><%= link_to 'Destroy', apply,  class: "btn btn-default",   method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

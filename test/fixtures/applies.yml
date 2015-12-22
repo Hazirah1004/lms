@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  leave_type: 1
+  start_date: 2015-08-28
+  end_date: 2015-08-28
+  replace_person: 1
+  address_on_leave: MyText
+
+two:
+  leave_type: 1
+  start_date: 2015-08-28
+  end_date: 2015-08-28
+  replace_person: 1
+  address_on_leave: MyText

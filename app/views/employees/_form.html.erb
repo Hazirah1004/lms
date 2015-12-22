@@ -1,0 +1,90 @@
+<%= form_for(@employee) do |f| %>
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% @employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="row form-group">
+  <div class="col-lg-5">
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, :class => 'form-control' %>
+  </div>
+</div>
+</div>
+<div class="row form-group">
+  <div class="col-lg-2">
+  <div class="field">
+    <%= f.label :ic %><br>
+    <%= f.text_field :ic, :class => 'form-control' %>
+  </div>
+</div>
+</div>
+<div class="row form-group">
+  <div class="col-lg-2">
+  <div class="field">
+    <%= f.label :gender %><br>
+    <select name="employee[gender]">
+      <option value = "Male">Male</option>
+      <option value = "Female">Female</option>
+    </select>
+  </div>
+</div>
+</div>
+<div class="row form-group">
+  <div class="col-lg-4">
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_area :address, :class => 'form-control' %>
+  </div>
+</div>
+</div>
+<div class="row form-group">
+  <div class="col-lg-2">
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone, :class => 'form-control' %>
+  </div>
+</div>
+</div>
+<div class="row form-group">
+  <div class="col-lg-2">
+  <div class="field">
+    <%= f.label :position %><br>
+    <select name="employee[position]">
+      <option value = "Staff">Staff</option>
+      <option value = "Manager">Manager</option>
+    </select>
+  </div>
+</div>
+</div>
+<div class="row form-group">
+  <div class="col-lg-3">
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, :class => 'form-control' %>
+  </div>
+</div>
+</div>
+<div class="row form-group">
+<div class="col-lg-3">
+  <div class="field">
+    <%= f.label :dept %><br>
+    <%=collection_select :employee, :dept, Department.all, :id, :dept,{}, {:prompt => 'Sila Pilih', :class => 'form-control'}%>
+  </div>
+</div>
+</div>
+  <div class="field">
+    <%= f.label :startdate %><br>
+    <%= f.text_field :startdate, :class => 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<% @a=params[:a].to_date%>
+<% @count=0 %>
+<% @searchresult.each do |a| %>
+
+<% @date1 = a.start_date%>
+<% @date2 = a.end_date%>
+<% @date3 = (@date1..@date2) %>
+<% if @date3.include?(@a) == true %>
+<% @count = @count + 1 %> 
+<% end %>
+<%end%> 
+<% if @count > 0 %>
+<font color = "Red" ><b><%= "This date not available" %><b></font>
+<% end %>

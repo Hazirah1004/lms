@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Leavetypes</h1>
+
+<table class="table table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Ltype</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @leavetypes.each do |leavetype| %>
+      <tr>
+        <td><%= leavetype.ltype %></td>
+        <td><%= link_to 'Show', leavetype %></td>
+        <td><%= link_to 'Edit', edit_leavetype_path(leavetype) %></td>
+        <td><%= link_to 'Destroy', leavetype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Leavetype', new_leavetype_path %>

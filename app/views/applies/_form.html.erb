@@ -1,0 +1,125 @@
+<%= form_for(@apply) do |f| %>
+  <% if @apply.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@apply.errors.count, "error") %> prohibited this apply from being saved:</h2>
+
+      <ul>
+      <% @apply.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= notice %>
+
+<table class="table table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Annual Leave</th>
+      <th>Emergency Leave</th>
+      <th>Compassionate Leave</th>
+      <% if @gender == "Female" %>
+        <th>Maternity Leave</th>
+      <%end%>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        <td><%= @balance %></td>
+        <td><%= @type2 %></td>
+        <td><%= @type3 %></td>
+        <% if @gender == "Female" %>
+        <td><%= @type4 %><%end%></td>
+      </tr>
+  </tbody>
+</table>
+
+  
+ 
+  <div class="row form-group">
+  <div class="col-lg-2">
+  <div class="field">
+    <%= f.label :leave_type %><br>
+    <%=collection_select :apply, :leave_type, Leavetype.all, :id, :ltype, {:prompt => 'Please Choose', :class => 'form-control'} %>
+  </div>
+  </div>
+  </div>
+  <div class="row form-group">
+  <div class="col-lg-2">
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.text_field :start_date, :class => 'form-control' %>
+  </div>
+
+  </div>
+  <div id="txtHint" class="col-lg-5 pull-left"><b></b></div>
+  </div>
+  <div class="row form-group">
+  <div class="col-lg-2">
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.text_field :end_date, :class => 'form-control' %>
+  </div>
+  </div>
+  <div id="txtHint2" class="col-lg-5 pull-left"><b></b></div>
+  </div>
+  <div class="row form-group">
+  <div class="col-lg-2">
+  <div class="field">
+    <%= f.label :replace_person %><br>
+    <%=collection_select :apply, :replace_person, Employee.where("dept=?",@current_user.dept), :id, :name,{}, {:prompt => 'Sila Pilih', :class => 'form-control'}%>
+  </div>
+  </div>
+  </div>
+  <div class="row form-group">
+  <div class="col-lg-4">
+  <div class="field">
+    <%= f.label :address_on_leave %><br>
+    <%= f.text_area :address_on_leave, :class => 'form-control' %>
+  </div>
+  </div>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+<script>
+jQuery(function($) {
+
+  $(".date").datepicker({
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true,
+    changeYear: true,
+    onSelect: function(dateText) {
+      display(dateText);
+      $(this).change();
+    }
+  })
+
+  function display(msg) {
+
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else { // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+  xmlhttp.open("GET","http://localhost:3000/applies/searchresult?a="+msg,true);
+  xmlhttp.send();
+    $( ".inner" ).html( msg );
+  }
+
+});
+</script>

@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Report <%= Time.now.year %> </h1>
+
+<table class="table table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Employee Name</th>
+      <th>Annual Leave</th>
+      <th>Emergency Leave</th>
+      <th>Compassionate Leave</th>
+      <% if @gender == "Female" %>
+        <th>Maternity Leave</th>
+      <%end%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @report.each do |report| %>
+      <tr>
+            <% @apply1 = Apply.where("employee_id=? and leave_type=? and status=?",report.id,1, "Approved") %>
+            <% @apply2 = Apply.where("employee_id=? and leave_type=? and status=?",report.id,2, "Approved") %>
+            <% @apply3 = Apply.where("employee_id=? and leave_type=? and status=?",report.id,3, "Approved") %>
+            <% @apply4 = Apply.where("employee_id=? and leave_type=? and status=?",report.id,4, "Approved") %>
+            <% @type1 = @apply1.sum(:no_day)%>
+           <% @type2 = @apply2.sum(:no_day)%>
+           <% @type3 = @apply3.sum(:no_day)%>
+           <% @type4 = @apply4.sum(:no_day)%>
+        <td><%= report.name %></td>
+        <td><%= @type1 %></td>
+        <td><%= @type2 %></td>
+        <td><%= @type3 %></td>
+        <% if @gender == "Female" %>
+        <td><%= @type4 %><%end%></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
